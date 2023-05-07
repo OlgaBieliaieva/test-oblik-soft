@@ -1,0 +1,17 @@
+.workspaceContainer {
+  width: 70%;
+}
+.noteForm {
+  width: 100%;
+}
+.dateField {
+  text-align: center;
+}
+.noteInput {
+  display: block;
+  margin: 0 auto;
+  width: 95%;
+  padding: 0 5px;
+  border: none;
+  resize: none;
+}
