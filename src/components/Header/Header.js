@@ -5,7 +5,7 @@ import { IoCreateOutline } from "react-icons/io5";
 
 import css from "./Header.module.css";
 
-function Header() {
+function Header({ addNote, deleteNote, updateNote, filterNote }) {
   return (
     <header className={css.headerContainer}>
       <ul className={css.buttonList}>
@@ -17,17 +17,29 @@ function Header() {
           }}
         >
           <li className={css.listItem}>
-            <button className={css.optionButton} type="button">
+            <button
+              className={css.optionButton}
+              type="button"
+              onClick={addNote}
+            >
               <IoAddOutline />
             </button>
           </li>
           <li className={css.listItem}>
-            <button className={css.optionButton} type="button">
+            <button
+              className={css.optionButton}
+              type="button"
+              onClick={deleteNote}
+            >
               <IoTrashOutline />
             </button>
           </li>
           <li className={css.listItem}>
-            <button className={css.optionButton} type="button">
+            <button
+              className={css.optionButton}
+              type="button"
+              onClick={updateNote}
+            >
               <IoCreateOutline />
             </button>
           </li>
@@ -41,6 +53,7 @@ function Header() {
             autoComplete="off"
             autoFocus
             placeholder="🔍 Search"
+            onChange={filterNote}
           ></input>
         </label>
       </form>
