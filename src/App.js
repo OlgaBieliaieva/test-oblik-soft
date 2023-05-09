@@ -1,55 +1,17 @@
 import { useState, useEffect } from "react";
 import shortid from "shortid";
-import Header from "./components/Header/Header";
+import OptionBox from "./components/OptionBox/OptionBox";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Workspace from "./components/Workspace/Workspace";
 
-// function init(state) {
-//   const savedNotes = localStorage.getItem("notes");
-//   const parsedNotes = JSON.parse(savedNotes);
-
-//   if (parsedNotes !== null) {
-//     return { ...state, notes: [...parsedNotes] };
-//   }
-
-//   return state;
-// }
-
-// function countReducer(state, action) {
-//   switch (action.type) {
-//     case "add":
-//       return { ...state, notes: [...state.notes, action.payload] };
-
-//     case "edit":
-//       return { ...state, notes: [...action.payload] };
-
-//     case "delete":
-//       return { ...state, notes: [...action.payload] };
-
-//     case "disActive":
-//       return { ...state, notes: [...action.payload] };
-
-//     case "filter":
-//       return { ...state, filter: action.payload };
-
-//     default:
-//       return;
-//   }
-// }
-
 function App() {
   const [notes, setNotes] = useState([]);
-  const [content, setContent] = useState("");
+
   const [filter, setFilter] = useState("");
+  const [disabled, setDisabled] = useState(true);
 
   const savedNotes = localStorage.getItem("notes");
   const parsedNotes = JSON.parse(savedNotes);
-
-  // const [state, dispatch] = useReducer(
-  //   countReducer,
-  //   { notes: [], filter: "" },
-  //   init
-  // );
 
   useEffect(() => {
     console.log("use effect 1");
@@ -86,15 +48,15 @@ function App() {
     } else {
       setNotes([newNote]);
     }
-
-    setContent("");
-    console.log("setContent(0)");
   };
 
   const handleInputChange = (e) => {
+    const noteId = e.target.form.id;
     const { value } = e.target;
-    setContent(value);
-    console.log("setContent(value)");
+    const editedNotes = notes.map((note) =>
+      note.id === noteId ? { ...note, content: value } : note
+    );
+    setNotes([...editedNotes]);
   };
 
   const createNote = (id, content) => {
@@ -113,6 +75,7 @@ function App() {
         : { ...note, isActive: false, isNew: false }
     );
     setNotes([...noteToRead]);
+    setDisabled(false);
   };
 
   const updateNote = () => {
@@ -120,7 +83,6 @@ function App() {
 
     const noteToUpdate = notes.map((note) => {
       if (note.isActive) {
-        setContent(note.content);
         return { ...note, isNew: true };
       } else {
         return { ...note };
@@ -152,7 +114,8 @@ function App() {
 
   return (
     <>
-      <Header
+      <OptionBox
+        disabled={disabled}
         addNote={addNote}
         deleteNote={deleteNote}
         updateNote={updateNote}
@@ -162,7 +125,6 @@ function App() {
         <Sidebar notes={notes} readNote={readNote} query={filter} />
         <Workspace
           notes={notes}
-          noteContent={content}
           handleChange={handleInputChange}
           createNote={createNote}
         />

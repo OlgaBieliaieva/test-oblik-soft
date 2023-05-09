@@ -3,11 +3,10 @@ import css from "./Sidebar.module.css";
 
 function Sidebar({ notes, readNote, query }) {
   const handleClick = (event) => {
-    console.log(event.currentTarget.id);
-    const activeNote = event.target.parentElement.id;
-    // console.log(activeNote);
+    const activeNote = event.currentTarget.id;
     readNote(activeNote);
   };
+
   return (
     <div className={css.sidebarContainer}>
       <ul>

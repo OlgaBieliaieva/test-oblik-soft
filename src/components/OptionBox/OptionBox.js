@@ -3,9 +3,9 @@ import { IoAddOutline } from "react-icons/io5";
 import { IoTrashOutline } from "react-icons/io5";
 import { IoCreateOutline } from "react-icons/io5";
 
-import css from "./Header.module.css";
+import css from "./OptionBox.module.css";
 
-function Header({ addNote, deleteNote, updateNote, filterNote }) {
+function OptionBox({ disabled, addNote, deleteNote, updateNote, filterNote }) {
   return (
     <header className={css.headerContainer}>
       <ul className={css.buttonList}>
@@ -30,6 +30,7 @@ function Header({ addNote, deleteNote, updateNote, filterNote }) {
               className={css.optionButton}
               type="button"
               onClick={deleteNote}
+              disabled={disabled}
             >
               <IoTrashOutline />
             </button>
@@ -39,6 +40,7 @@ function Header({ addNote, deleteNote, updateNote, filterNote }) {
               className={css.optionButton}
               type="button"
               onClick={updateNote}
+              disabled={disabled}
             >
               <IoCreateOutline />
             </button>
@@ -51,7 +53,6 @@ function Header({ addNote, deleteNote, updateNote, filterNote }) {
             className={css.searchInput}
             type="text"
             autoComplete="off"
-            autoFocus
             placeholder="🔍 Search"
             onChange={filterNote}
           ></input>
@@ -61,4 +62,4 @@ function Header({ addNote, deleteNote, updateNote, filterNote }) {
   );
 }
 
-export default Header;
+export default OptionBox;
