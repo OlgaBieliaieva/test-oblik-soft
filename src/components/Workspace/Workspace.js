@@ -10,13 +10,13 @@ function Workspace({ notes, handleChange, createNote }) {
 
   return (
     <div className={css.workspaceContainer}>
-      {notes.map(
-        (note) =>
-          note.isActive &&
-          note.isNew && (
+      {/* eslint-disable-next-line */}
+      {notes.map((note) => {
+        if (note.isActive && note.isNew) {
+          return (
             <form className={css.noteForm} id={note.id} key={note.id}>
-              <legend className={css.dateField}>Date/Time now</legend>
-              <label>
+              <legend className={css.dateField}>{note.created}</legend>
+              <label className={css.inputWrapper}>
                 <textarea
                   className={css.noteInput}
                   type="text"
@@ -24,19 +24,17 @@ function Workspace({ notes, handleChange, createNote }) {
                   value={note.content}
                   onChange={handleChange}
                   onBlur={handleEditNote}
-                  rows={42}
                   autoFocus
                 ></textarea>
               </label>
             </form>
-          )
-      )}
-      {notes.map(
-        (note) =>
-          note.isActive && (
+          );
+        }
+        if (note.isActive) {
+          return (
             <form className={css.noteForm} id={note.id} key={note.id}>
               <legend className={css.dateField}>{note.created}</legend>
-              <label>
+              <label className={css.inputWrapper}>
                 <textarea
                   className={css.noteInput}
                   type="text"
@@ -44,13 +42,13 @@ function Workspace({ notes, handleChange, createNote }) {
                   value={note.content}
                   onChange={handleChange}
                   onBlur={handleEditNote}
-                  rows={42}
                   disabled
                 ></textarea>
               </label>
             </form>
-          )
-      )}
+          );
+        }
+      })}
     </div>
   );
 }

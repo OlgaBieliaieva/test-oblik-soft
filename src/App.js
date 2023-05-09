@@ -3,6 +3,8 @@ import shortid from "shortid";
 import OptionBox from "./components/OptionBox/OptionBox";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Workspace from "./components/Workspace/Workspace";
+// import { useLiveQuery } from "dexie-react-hooks";
+// import db from "./components/dataBase";
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -12,6 +14,19 @@ function App() {
 
   const savedNotes = localStorage.getItem("notes");
   const parsedNotes = JSON.parse(savedNotes);
+  console.log(window);
+  // function updateDB() {
+  //   try {
+  //     db.notes.bulkPut([...notes]);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
+  // const dbNotes = useLiveQuery(() => {
+  //   db.notes.toArray();
+  // });
+  // console.log(dbNotes);
 
   useEffect(() => {
     console.log("use effect 1");
@@ -113,7 +128,8 @@ function App() {
   console.log(notes);
 
   return (
-    <>
+    <div className="app">
+      {/* <DataBase /> */}
       <OptionBox
         disabled={disabled}
         addNote={addNote}
@@ -129,7 +145,7 @@ function App() {
           createNote={createNote}
         />
       </main>
-    </>
+    </div>
   );
 }
 

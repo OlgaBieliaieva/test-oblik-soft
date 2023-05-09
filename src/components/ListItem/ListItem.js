@@ -1,9 +1,10 @@
+import css from "./ListItem.module.css";
+
 function ListItem({ noteInfo }) {
   return (
     <>
-      <p>{noteInfo.created}</p>
-      <p>{noteInfo.content}</p>
-      <p>{noteInfo.id}</p>
+      <p className={css.itemContent}>{noteInfo.content}</p>
+      <p className={css.itemCreated}>{noteInfo.created}</p>
     </>
   );
 }

@@ -1,4 +1,5 @@
 .headerContainer {
+  height: 8hv;
   display: flex;
   justify-content: space-between;
   align-items: center;
