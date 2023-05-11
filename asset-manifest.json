@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/olgabieliaieva.github.io/test-oblik-soft/static/css/main.466996df.css",
+    "main.js": "/olgabieliaieva.github.io/test-oblik-soft/static/js/main.e65bbfef.js",
+    "static/js/787.c5fb53f1.chunk.js": "/olgabieliaieva.github.io/test-oblik-soft/static/js/787.c5fb53f1.chunk.js",
+    "index.html": "/olgabieliaieva.github.io/test-oblik-soft/index.html",
+    "main.466996df.css.map": "/olgabieliaieva.github.io/test-oblik-soft/static/css/main.466996df.css.map",
+    "main.e65bbfef.js.map": "/olgabieliaieva.github.io/test-oblik-soft/static/js/main.e65bbfef.js.map",
+    "787.c5fb53f1.chunk.js.map": "/olgabieliaieva.github.io/test-oblik-soft/static/js/787.c5fb53f1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.466996df.css",
+    "static/js/main.e65bbfef.js"
+  ]
+}
