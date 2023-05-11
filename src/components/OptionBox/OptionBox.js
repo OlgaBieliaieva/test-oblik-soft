@@ -48,7 +48,7 @@ function OptionBox({ disabled, addNote, deleteNote, updateNote, filterNote }) {
         </IconContext.Provider>
       </ul>
       <form className={css.searchForm}>
-        <label>
+        <label className={css.formlabel}>
           <input
             className={css.searchInput}
             type="text"

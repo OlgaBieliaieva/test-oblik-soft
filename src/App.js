@@ -1,35 +1,18 @@
 import { useState, useEffect } from "react";
 import shortid from "shortid";
+import date from "date-and-time";
 import OptionBox from "./components/OptionBox/OptionBox";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Workspace from "./components/Workspace/Workspace";
-// import { useLiveQuery } from "dexie-react-hooks";
-// import db from "./components/dataBase";
 
 function App() {
   const [notes, setNotes] = useState([]);
-
   const [filter, setFilter] = useState("");
   const [disabled, setDisabled] = useState(true);
-
   const savedNotes = localStorage.getItem("notes");
   const parsedNotes = JSON.parse(savedNotes);
-  console.log(window);
-  // function updateDB() {
-  //   try {
-  //     db.notes.bulkPut([...notes]);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  // const dbNotes = useLiveQuery(() => {
-  //   db.notes.toArray();
-  // });
-  // console.log(dbNotes);
 
   useEffect(() => {
-    console.log("use effect 1");
     if (parsedNotes !== null) {
       const disActive = parsedNotes.map((note) => {
         return { ...note, isActive: false, isNew: false };
@@ -49,7 +32,7 @@ function App() {
     const newNote = {
       id: shortid.generate(),
       content: "",
-      created: Date.now(),
+      created: date.format(new Date(), "MMM DD, YYYY [at] hh:mm A"),
       isActive: true,
       isNew: true,
     };
@@ -94,27 +77,31 @@ function App() {
   };
 
   const updateNote = () => {
-    console.log("update");
-
     const noteToUpdate = notes.map((note) => {
       if (note.isActive) {
-        return { ...note, isNew: true };
+        return {
+          ...note,
+          created: date.format(new Date(), "MMM DD, YYYY [at] hh:mm A"),
+          isNew: true,
+        };
       } else {
         return { ...note };
       }
     });
     setNotes([...noteToUpdate]);
+    setDisabled(true);
   };
 
   const deleteNote = (e) => {
     let selectedNote = null;
-    console.log(e);
+
     notes.map((note) =>
       note.isActive ? (selectedNote = note.id) : { ...note }
     );
     if (window.confirm("Are you sure you want to delete this note?")) {
       const remainingNotes = notes.filter((note) => note.id !== selectedNote);
       setNotes([...remainingNotes]);
+      setDisabled(true);
     } else {
       return;
     }
@@ -125,11 +112,8 @@ function App() {
     setFilter(value);
   };
 
-  console.log(notes);
-
   return (
     <div className="app">
-      {/* <DataBase /> */}
       <OptionBox
         disabled={disabled}
         addNote={addNote}

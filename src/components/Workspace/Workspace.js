@@ -2,7 +2,6 @@ import css from "./Workspace.module.css";
 
 function Workspace({ notes, handleChange, createNote }) {
   const handleEditNote = (e) => {
-    console.log(e);
     const noteId = e.target.form.id;
     const noteContent = e.target.value;
     createNote(noteId, noteContent);

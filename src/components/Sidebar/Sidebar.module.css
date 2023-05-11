@@ -1,19 +1,12 @@
 .sidebarContainer {
   width: 30%;
-
-  /* max-height: 95%;
-  overflow: auto; */
 }
 .noteList {
   height: 93%;
   overflow: auto;
-  /* display: flex;
-  flex-direction: column;
-  gap: 6px; */
   padding: 0 5px;
   margin: 0 auto;
   list-style-type: none;
-  /* height: 95%; */
 }
 .listItem {
   display: flex;
